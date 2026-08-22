@@ -619,6 +619,3 @@ The Wisecow application was successfully:
 * Verified through an HTTPS application request.
 
 The implementation therefore satisfies the requested Docker, Kubernetes, CI/CD, and secure TLS requirements for Problem Statement 1.
-
-README. Also, don't paste `tls.key` anywhere into GitHub. Your current setup correctly keeps it out of Git.
-```
