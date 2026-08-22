@@ -1,0 +1,7 @@
+{
+  "cpu_threshold": 80,
+  "memory_threshold": 80,
+  "disk_threshold": 80,
+  "process_threshold": 300,
+  "log_file": "logs/health_monitor.log"
+}
