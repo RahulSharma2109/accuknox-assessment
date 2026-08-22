@@ -620,7 +620,5 @@ The Wisecow application was successfully:
 
 The implementation therefore satisfies the requested Docker, Kubernetes, CI/CD, and secure TLS requirements for Problem Statement 1.
 
-```
-
-**One important correction from the original README:** I deliberately did **not** put your TLS certificate/key contents or any private credentials into this README. Also, don't paste `tls.key` anywhere into GitHub. Your current setup correctly keeps it out of Git.
+README. Also, don't paste `tls.key` anywhere into GitHub. Your current setup correctly keeps it out of Git.
 ```
