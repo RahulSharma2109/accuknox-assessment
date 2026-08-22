@@ -1,4 +1,4 @@
-name: Wisecow CI
+name: Wisecow CI/CD
 
 on:
   push:
@@ -17,6 +17,7 @@ env:
   IMAGE_NAME: rahulsharma2109/wisecow
 
 jobs:
+
   build-and-push:
     name: Build and Push Wisecow Image
     runs-on: ubuntu-latest
@@ -41,3 +42,33 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+  deploy:
+    name: Deploy Wisecow to Minikube
+    needs: build-and-push
+    runs-on: [self-hosted, Linux, X64]
+
+    steps:
+      - name: Verify Kubernetes cluster
+        run: |
+          kubectl get nodes
+          kubectl get deployment wisecow
+
+      - name: Update Wisecow image
+        run: |
+          kubectl set image deployment/wisecow \
+            wisecow=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Wait for deployment rollout
+        run: |
+          kubectl rollout status deployment/wisecow --timeout=180s
+
+      - name: Verify deployed pods
+        run: |
+          kubectl get deployment wisecow
+          kubectl get pods -o wide
+          kubectl get service wisecow
+
+      - name: Test Wisecow application
+        run: |
+          curl -k --fail https://wisecow.local
