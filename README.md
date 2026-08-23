@@ -149,10 +149,6 @@ The TLS certificate is generated locally for the Minikube environment and the pr
 
 PS2 includes error handling, configurable monitoring thresholds, and automated health-check tests.
 
-## Problem Statement 3
-
-The KubeArmor zero-trust security challenge was optional and was not implemented as part of this submission.
-
 ## Author
 
 **Rahul Sharma**
